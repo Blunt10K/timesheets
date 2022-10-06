@@ -1,4 +1,3 @@
-xaltair==4.2.0
 attrs==22.1.0
 backports.zoneinfo==0.2.1
 blinker==1.5
