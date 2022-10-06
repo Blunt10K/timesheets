@@ -71,7 +71,7 @@ def preprocess_data(path = '../timesheet_dash_data/RESOURCE SUMMARY.xlsx'):
     wb['Date'] = pd.to_datetime(wb['Date'])
     # extract year from date
     wb = wb.assign(year_month=wb['Date'].dt.strftime('%B, %Y'))
-    wb['year'] = wb['Date'].dt.strftime('%B, %Y')
+    # wb['year'] = wb['Date'].dt.strftime('%B, %Y')
 
    # merge Time Category and Phase information in one -- activity
     non_audit = wb[wb['Time Category'].isna()]['Assignment Name']
