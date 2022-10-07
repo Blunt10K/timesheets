@@ -93,7 +93,7 @@ def build_treemap(df):
     # hovertemplate='label = %{label}<br>%{color:.data}<br>Hours worked = %{value:.2f}'
     hovertemplate = 'label = %{label}<br>Activity = %{customdata[0]}<br>Working hours = %{value}<extra></extra>'
     fig = px.treemap(df,path=[px.Constant('Month'),'year_month','Resource','time','time_stat','activity','activity_hours'],
-    hover_data=['time','activity_hours'],width=1000,height=800,
+    hover_data=['time','activity_hours'],width=1200,height=800,
     values='working_hours',color = 'time',color_discrete_map=colour_map,maxdepth=5)
 
     fig.update_layout(title='Time Utilization per Month and Auditor',title_x=0.5)
