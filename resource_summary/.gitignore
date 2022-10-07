@@ -1,3 +1,4 @@
 timesheet_dash_data/
 .DS_Store/
 .streamlit/secrets.toml
+resource_summary/*.xlsx
