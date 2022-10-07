@@ -6,19 +6,9 @@ from google.oauth2 import service_account
 from gsheetsdb import connect
 
 
-st.set_page_config(page_title='Resource time utilisation')
+st.set_page_config(page_title='Resource time utilisation',layout='wide')
 st.title('Time utilisation per resource')
 
-# @st.experimental_memo
-# def load_data():
-#     df = preprocess_data()
-#     names = list(df['Resource'].unique())
-#     names.sort()
-#     cols = ['Project Hours','Admin Hours', 'Nonworking Hours', 'Holiday', 'Total (All Entries)','Utilization (All Entries)',
-#     'Comment','time_category_percentage','Type','Team','Assignment Code','Audit Plan Title','Assignment Name','Phase',
-#     'Time Category','activity_percentage']
-
-#     return names, df.drop(columns = cols).sort_values('Date',ascending=False)
 
 @st.experimental_singleton()
 def connect_sheets():
@@ -46,7 +36,6 @@ def run_query(query):
 
 sheet_url = st.secrets["private_gsheets_url"]
 names, df = run_query(f'SELECT * FROM "{sheet_url}"')
-# col1, col2 = st.columns(2)
 
 
 with st.sidebar:
