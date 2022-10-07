@@ -6,7 +6,7 @@ from google.oauth2 import service_account
 from gsheetsdb import connect
 
 
-st.set_page_config(page_title='Resrouce time utilisation')
+st.set_page_config(page_title='Resource time utilisation')
 st.title('Time utilisation per resource')
 
 # @st.experimental_memo
