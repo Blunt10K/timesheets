@@ -5,14 +5,6 @@ from utils import *
 from google.oauth2 import service_account
 from gsheetsdb import connect
 
-# Create a connection object.
-credentials = service_account.Credentials.from_service_account_info(
-    st.secrets["gcp_service_account"],
-    scopes=[
-        "https://www.googleapis.com/auth/spreadsheets",
-    ],
-)
-conn = connect(credentials=credentials)
 
 st.set_page_config(page_title='Resrouce time utilisation')
 st.title('Time utilisation per resource')
@@ -28,8 +20,20 @@ st.title('Time utilisation per resource')
 
 #     return names, df.drop(columns = cols).sort_values('Date',ascending=False)
 
-@st.cache(ttl=600)
+@st.experimental_singleton()
+def connect_sheets():
+    # Create a connection object.
+    credentials = service_account.Credentials.from_service_account_info(
+        st.secrets["gcp_service_account"],
+        scopes=[
+            "https://www.googleapis.com/auth/spreadsheets",
+        ],
+    )
+    return connect(credentials=credentials)
+
+@st.experimental_memo(ttl=600)
 def run_query(query):
+    conn = connect_sheets()
     rows = conn.execute(query, headers=1)
     rows = rows.fetchall()
     df = pd.DataFrame(rows)
